@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+
+  <!-- Include FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffeb3d, #87CEFA);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      max-width: 600px;
+      width: 90%;
+      overflow: hidden;
+    }
+
+    h2 {
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .search-option {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      margin-top: 10px;
+      transition: 0.3s ease;
+    }
+
+    .search-option input[type="radio"] {
+      margin-right: 15px;
+    }
+
+    .search-option i {
+      font-size: 24px;
+      color: #888;
+      margin-right: 10px;
+    }
+
+    .search-option:hover {
+      background: #eaf7fa;
+      transform: scale(1.02);
+    }
+
+    .button {
+      background-color: #ffeb3d;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      transition: 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .button:hover {
+      background-color: #ffd700;
+    }
+
+    .button:active {
+      background-color: #ffc107;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Search Results</h1>
+
+    <!-- Booking Form -->
+    <form action="/booking" method="POST">
+      
+      <!-- Flights Section -->
+      <h2>Flights</h2>
+      <% flights.forEach(flight => { %>
+        <div class="search-option">
+          <input type="radio" name="flightId" value="<%= flight._id %>">
+          <i class="fas fa-plane"></i>
+          <span><%= flight.flightNumber %> - ₹<%= flight.price %> - Seats: <%= flight.availableSeats %></span>
+        </div>
+      <% }) %>
+
+      <!-- Hotels Section -->
+      <h2>Hotels</h2>
+      <% hotels.forEach(hotel => { %>
+        <div class="search-option">
+          <input type="radio" name="hotelId" value="<%= hotel._id %>">
+          <i class="fas fa-hotel"></i>
+          <span><%= hotel.name %> - ₹<%= hotel.pricePerNight %> - Rooms: <%= hotel.availableRooms %></span>
+        </div>
+      <% }) %>
+
+      <!-- Cars Section -->
+      <h2>Cars</h2>
+      <% cars.forEach(car => { %>
+        <div class="search-option">
+          <input type="radio" name="carId" value="<%= car._id %>">
+          <i class="fas fa-car"></i>
+          <span><%= car.model %> - ₹<%= car.price %> - Cars: <%= car.availableCars %></span>
+        </div>
+      <% }) %>
+
+      <!-- Submit Button -->
+      <button type="submit" class="button">Book Selected</button>
+
+    </form>
+
+  </div>
+
+</body>
+</html>

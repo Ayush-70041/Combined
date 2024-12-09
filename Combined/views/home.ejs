@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Booking</title>
+
+  <!-- Include FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffeb3d, #87CEFA);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .logo-section {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-section i {
+      font-size: 80px;
+      color: #555;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-section i:hover {
+      transform: scale(1.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      margin-top: 10px;
+      transition: 0.3s ease;
+    }
+
+    .input-group input[type="text"],
+    .input-group input[type="date"] {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      background: transparent;
+      width: 100%;
+    }
+
+    .input-group input[type="text"]:focus,
+    .input-group input[type="date"]:focus {
+      outline: none;
+      border-color: #66afe9;
+    }
+
+    .input-group i {
+      font-size: 24px;
+      margin-right: 10px;
+      color: #888;
+    }
+
+    button {
+      background-color: #ffeb3d;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 15px;
+      border: none;
+      font-size: 18px;
+      border-radius: 10px;
+      transition: 0.3s ease;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #ffd700;
+    }
+
+    button:active {
+      background-color: #ffc107;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Book Your Travel</h1>
+
+    <!-- Placeholder for Icons -->
+    <div class="logo-section">
+      <i class="fas fa-car" title="Car Rentals"></i>
+      <i class="fas fa-hotel" title="Hotels"></i>
+      <i class="fas fa-plane" title="Airlines"></i>
+    </div>
+
+    <!-- Booking Form -->
+    <form action="/search" method="POST">
+      <% if (user && user._id) { %>
+        <input type="hidden" name="userId" value="<%= user._id %>">
+      <% } %>
+
+      <!-- Destination Input -->
+      <div class="input-group">
+        <i class="fas fa-map-marker-alt"></i>
+        <input type="text" name="location" id="location" placeholder="Enter your destination" required>
+      </div>
+
+      <!-- Date Input -->
+      <div class="input-group">
+        <i class="fas fa-calendar-alt"></i>
+        <input type="date" name="date" id="date" required>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit">Search</button>
+    </form>
+
+  </div>
+
+</body>
+</html>
